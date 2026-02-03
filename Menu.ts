@@ -1,10 +1,13 @@
 import leia from 'readline-sync'
+import { colors } from './src/util/Colors'
+
 
 export function main(){
     let opcao:number
 
     while(true){
-        console.log("*****************************************")
+        console.log(colors.bg.black, colors.fg.yellow, 
+                    "****************************************")
         console.log("                                         ")
         console.log("        BANCO GENERATION BRASIL          ")
         console.log("                                         ")
@@ -21,15 +24,18 @@ export function main(){
         console.log("9 - Sair                                 ")
         console.log("                                         ")
         console.log("*****************************************")
-        console.log("                                         ")
+        console.log("                                         ",
+            colors.reset)
 
         console.log("Entre com a opção desejada: ")
         opcao = leia.questionInt()
 
         if(opcao == 9){
             console.log("\nSaindo do sistema...")
-            console.log("Banco Generation Brasil - Seu futuro começa aqui!")
+            console.log(colors.fg.greenstrong,
+                "\nBanco Generation Brasil - Seu futuro começa aqui!")
             sobre()
+            console.log(colors.reset, "")
             process.exit(0)
         }
 
