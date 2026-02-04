@@ -6,22 +6,22 @@ export function main(){
     let opcao:number
 
     while(true){
-        console.log(colors.bg.black, colors.fg.yellow, 
-                    "****************************************")
+        console.log( colors.fg.yellow, 
+                     "***************************************")
         console.log("                                         ")
         console.log("        BANCO GENERATION BRASIL          ")
         console.log("                                         ")
-        console.log("*****************************************")
+        console.log(" ****************************************")
         console.log("                                         ")
-        console.log("1 - Criar Conta                          ")
-        console.log("2 - Listar todas as contas               ")
-        console.log("3 - Buscar conta por numero              ")
-        console.log("4 - Atualizar dados da conta             ")
-        console.log("5 - Apagar conta                         ")
-        console.log("6 - Sacar                                ")
-        console.log("7 - Depositar                            ")
-        console.log("8 - Transferir                           ")
-        console.log("9 - Sair                                 ")
+        console.log("[1] CRIAR CONTA                          ")
+        console.log("[2] LISTAR TODAS AS CONTAS               ")
+        console.log("[3] BUSCAR CONTA POR NUMERO              ")
+        console.log("[4] ATUALIZAR DADOS DA CONTA             ")
+        console.log("[5] APAGAR UMA CONTA                     ")
+        console.log("[6] SACAR                                ")
+        console.log("[7] DEPOSITAR                            ")
+        console.log("[8] TRANSFERIR                           ")
+        console.log("[9] SAIR                                 ")
         console.log("                                         ")
         console.log("*****************************************")
         console.log("                                         ",
@@ -32,7 +32,7 @@ export function main(){
 
         if(opcao == 9){
             console.log("\nSaindo do sistema...")
-            console.log(colors.fg.greenstrong,
+            console.log(colors.fg.magentastrong,
                 "\nBanco Generation Brasil - Seu futuro começa aqui!")
             sobre()
             console.log(colors.reset, "")
@@ -77,12 +77,12 @@ export function main(){
     }
 }
 export function sobre():void{
-    console.log("\n******************************************************")
+    console.log("\n----------------------------------------------------")
     console.log("Projeto desenvolvido por: ")
     console.log("Clarisse Rodrigues")
     console.log("clarissebleasby@gmail.com")
     console.log("https://github.com/clarodriguess")
-    console.log("********************************************************")
+    console.log("-----------------------------------------------------")
 }
 main()
 
