@@ -1,9 +1,19 @@
 import leia from 'readline-sync'
 import { colors } from './src/util/Colors'
+import { Conta } from './src/model/Conta';
 
 
 export function main(){
     let opcao:number
+
+    //instanciar objetos da classe conta
+    const c1 = new Conta(1, 1234, "Clarisse", 1, 1000);
+
+    console.log("Sacar 100: ", c1.sacar(100));
+    
+
+    c1.visualizar();
+
 
     while(true){
         console.log( colors.fg.yellow, 
@@ -77,7 +87,7 @@ export function main(){
     }
 }
 export function sobre():void{
-    console.log("\n----------------------------------------------------")
+    console.log("----------------------------------------------------")
     console.log("Projeto desenvolvido por: ")
     console.log("Clarisse Rodrigues")
     console.log("clarissebleasby@gmail.com")
