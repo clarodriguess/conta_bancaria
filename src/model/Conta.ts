@@ -1,6 +1,9 @@
 import { colors } from "../util/Colors";
 
-export class Conta{
+export abstract class Conta{
+    //classe abstrata n tem objetos, n pode ser instanciada
+    //é so para fazer herança
+
     //atributos da classe
     private _numero: number;
     private _agencia: number;
@@ -108,7 +111,6 @@ export class Conta{
      console.log(`Titular da conta: ${this._titular}`);
      console.log(`Tipo da conta: ${tipo}`); //exibir a var tipo em vez do atributo 
      console.log(`Saldo da conta: R$ ${this._saldo.toFixed(2)}`);
-     console.log("******************************"); 
     }
         
 }

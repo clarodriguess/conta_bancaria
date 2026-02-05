@@ -1,23 +1,26 @@
 import { colors } from './src/util/Colors'
 import { Conta } from './src/model/Conta';
 import { Input } from './src/util/Input';
+import { ContaCorrente } from './src/model/ContaCorrente';
 
 
 export function main(){
     let opcao:number
 
     //instanciar objetos da classe conta
-    const c1 = new Conta(1, 1234, "Clarisse Rodrigues", 1, 1000);
-    const c2 = new Conta(2, 1234, "Benedito Perez", 2, 25000)
-
-    console.log("Sacar R$100: ", c1.sacar(100));
-    console.log("Sacar R$1500: ", c2.sacar(1500));
-    // console.log("Depositar 500: ", c1.depositar(500));  
-
-    c1.visualizar();
-    c2.visualizar();
-
+    // const c1 = new Conta(1, 1234, "Clarisse Rodrigues", 1, 1000);
+    // console.log("Sacar R$100: ", c1.sacar(100));
+    // console.log("Depositar 500: ")
+    // c1.depositar(500);  
+    // c1.visualizar();
     
+    //testes da classe ContaCorrente
+    const cc1 = new ContaCorrente(2, 5678, "Bianca", 1, 30000, 5000);
+    
+    console.log()
+    cc1.sacar(1000);
+
+    cc1.visualizar();
 
     while(true){
         console.log( colors.fg.yellow, 
