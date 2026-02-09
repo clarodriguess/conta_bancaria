@@ -5,6 +5,7 @@ import { ContaRepository } from "../repository/ContaRepository";
 import { colors } from "../util/Colors";
 
 export class ContaController implements ContaRepository{
+   
     
     //atributos da classe
     private listaContas = new Array<Conta>();
@@ -24,6 +25,18 @@ export class ContaController implements ContaRepository{
         for (let conta of this.listaContas) {
             conta.visualizar();
         } //percorre todo o array e lista o q tem, item a item
+    }
+
+    procurarPorTitular(titular: string): void {
+        //filtragem dos dados:
+        const buscaPorTitular= this.listaContas.filter(conta => 
+            conta.titular.toLocaleUpperCase().includes(titular.toLocaleUpperCase()));
+        //listagem dos dados filtrados:
+        if (buscaPorTitular.length > 0) {
+            buscaPorTitular.forEach(conta => conta.visualizar());
+        } else{
+            console.log(colors.fg.red, "\n*** Nenhuma conta encontrada ***", colors.reset)
+        }
     }
 
     cadastrar(conta: Conta): void {
@@ -56,13 +69,41 @@ export class ContaController implements ContaRepository{
 
     //metodos bancarios
     sacar(numero: number, valor: number): void {
-        throw new Error("Method not implemented.");
+        //reproveitei parte do buscaConta
+        const buscaConta = this.buscarNoArray(numero);
+
+        if (buscaConta !== null) {
+            if (buscaConta.sacar(valor) === true)
+                console.log(colors.fg.green, `\n*** O saque no valor de ${valor} na conta numero ${numero} foi realizado com sucesso ***`, colors.reset);
+        } else{
+            console.log(colors.fg.red, "\n*** Conta não encontrada ***", colors.reset)
+        }
     }
+
     depositar(numero: number, valor: number): void {
-        throw new Error("Method not implemented.");
+        const buscaConta = this.buscarNoArray(numero);
+
+        if (buscaConta !== null) {
+            buscaConta.depositar(valor)
+            console.log(colors.fg.green, `\n*** O deposito no valor de ${valor} na conta numero ${numero} foi realizado com sucesso ***`, colors.reset);
+        } else{
+            console.log(colors.fg.red, "\n*** Conta não encontrada ***", colors.reset)
+        }
     }
-    transferir(numeroOrigem: number, numeroDestino: number) {
-        throw new Error("Method not implemented.");
+
+    transferir(numeroOrigem: number, numeroDestino: number, valor: number) {
+        const buscaContaOrigem = this.buscarNoArray(numeroOrigem);
+        const buscaContaDestino = this.buscarNoArray(numeroDestino);
+        
+        if (buscaContaOrigem !== null && buscaContaDestino) {
+            if (buscaContaOrigem.sacar(valor) === true){
+                buscaContaDestino.depositar(valor);
+                console.log(colors.fg.green, `\n*** A transferencia no valor de ${valor} da conta numero ${numeroOrigem} para a conta numero ${numeroDestino} foi realizado com sucesso ***`, colors.reset);
+            }
+                
+        } else{
+            console.log(colors.fg.red, "\n*** Conta de origem e/ou conta de destino não foram encontradas ***", colors.reset)
+        }
     }
 
     //metodos auxiliares
@@ -83,6 +124,6 @@ export class ContaController implements ContaRepository{
         return null;
     }
 }
-    //
+    
 
     

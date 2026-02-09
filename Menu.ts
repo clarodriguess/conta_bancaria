@@ -32,6 +32,7 @@ export function main(){
         console.log("[6] SACAR                                ")
         console.log("[7] DEPOSITAR                            ")
         console.log("[8] TRANSFERIR                           ")
+        console.log("[9] BUSCAR CONTA POR NOME DO TITULAR     ")
         console.log("[0] SAIR                                 ")
         console.log("                                         ")
         console.log("*****************************************")
@@ -76,16 +77,23 @@ export function main(){
                 break
             case 6:
                 console.log("Saque")
+                sacar()
                 keyPress()
                 break
             case 7:
                 console.log("Deposito")
+                depositar()
                 keyPress()
                 break
             case 8:
                 console.log("Transferencia entre contas")
+                transferir()
                 keyPress()
                 break
+            case 9:
+                console.log(colors.fg.yellow,"\nBUSCAR CONTA POR NOME DO TITULAR", colors.reset)
+                procurarPorTitular()
+                keyPress()
             default:
                 console.log("Opção inválida")
         }
@@ -129,7 +137,6 @@ function buscarContaPorNumero(): void {
     contas.procurarPorNumero(numero)
 }
 
-
 //opcao 4 - atualizar dados da conta
 function atualizarConta(): void{
     console.log("Digite o número da conta: ")
@@ -157,6 +164,7 @@ function atualizarConta(): void{
         console.log("Digite o novo nome do titular \n (Pressione ENTER para manter o valor atual)")
         entrada = Input.question("");
         
+
         titular = entrada.trim() === "" ? titular : entrada; //n precisa converter pq entrada ja é string
 
         //atualizacao do saldo
@@ -204,12 +212,73 @@ function atualizarConta(): void{
     }
 }
 
-
 //opcao 5 - deletar uma conta
 function deletarContaPorNumero(): void{
     console.log("Digite o número da conta: ")
     const numero = Input.questionInt("")
     contas.deletar(numero)
+}
+
+//opcao 6 - sacar
+function sacar(): void{
+    console.log("Digite o número da conta: ")
+    const numero = Input.questionInt("")
+
+    const conta = contas.buscarNoArray(numero)
+    //buscarNoArray devolve o objeto
+
+    if (conta !== null) {
+        console.log("Digite o valor a ser sacado: ")
+        const valor = Input.questionFloat("")
+        conta.sacar(valor)
+    } else{
+        console.log(colors.fg.red, "\n*** Conta não encontrada ***", colors.reset)
+    }
+}
+
+//opcao 7 - depositar
+function depositar(): void{
+    console.log("Digite o número da conta: ")
+    const numero = Input.questionInt("")
+
+    const conta = contas.buscarNoArray(numero)    //buscarNoArray devolve o objeto
+
+    if (conta !== null) {
+        console.log("Digite o valor a ser depositado: ")
+        const valor = Input.questionFloat("")
+        conta.depositar(valor)
+    } else{
+        console.log(colors.fg.red, "\n*** Conta não encontrada ***", colors.reset)
+    }
+}
+
+//opcao 8 - transferir
+function transferir(): void{
+    console.log("Digite o número da conta de origem: ")
+    const numeroOrigem = Input.questionInt("")
+
+    console.log("Digite o número da conta de destino: ")
+    const numeroDestino = Input.questionInt("")
+
+    const contaOrigem = contas.buscarNoArray(numeroOrigem)
+    const contaDestino = contas.buscarNoArray(numeroDestino)
+
+    if (contaOrigem === null ) {
+        console.log(colors.fg.red, "\n*** Conta de origem não encontrada ***", colors.reset)
+    } else if (contaDestino === null) {
+        console.log(colors.fg.red, "\n*** Conta de destino não encontrada ***", colors.reset)
+    } else{
+        console.log("Digite o valor a ser transferido: ")
+        const valor = Input.questionFloat("")
+        contas.transferir(numeroOrigem, numeroDestino, valor)
+    }
+}
+
+//opcao 9 - procurar por nome de titular
+function procurarPorTitular() {
+    console.log("Digite o nnome do titular: ")
+    const titular = Input.question("")
+    contas.procurarPorTitular(titular); 
 }
 
 
