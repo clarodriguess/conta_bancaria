@@ -27,12 +27,12 @@ export function main(){
         console.log("[1] CRIAR CONTA                          ")
         console.log("[2] LISTAR TODAS AS CONTAS               ")
         console.log("[3] BUSCAR CONTA POR NUMERO              ")
-        console.log("[4] ATUALIZAR DADOS DA CONTA             ")
-        console.log("[5] APAGAR UMA CONTA                     ")
-        console.log("[6] SACAR                                ")
-        console.log("[7] DEPOSITAR                            ")
-        console.log("[8] TRANSFERIR                           ")
-        console.log("[9] BUSCAR CONTA POR NOME DO TITULAR     ")
+        console.log("[4] BUSCAR CONTA POR NOME DO TITULAR     ")
+        console.log("[5] ATUALIZAR DADOS DA CONTA             ")
+        console.log("[6] APAGAR UMA CONTA                     ")
+        console.log("[7] SACAR                                ")
+        console.log("[8] DEPOSITAR                            ")
+        console.log("[9] TRANSFERIR                           ")
         console.log("[0] SAIR                                 ")
         console.log("                                         ")
         console.log("*****************************************")
@@ -65,35 +65,40 @@ export function main(){
                 buscarContaPorNumero()
                 keyPress()
                 break
-            case 4:
+             case 4:
+                console.log(colors.fg.yellow,"\nBUSCAR CONTA POR NOME DO TITULAR", colors.reset)
+                procurarPorTitular()
+                keyPress()
+                break
+            case 5:
                 console.log(colors.fg.yellow,"\nATUALIZAR DADOS DA CONTA", colors.reset)
                 atualizarConta()
                 keyPress()
                 break
-            case 5:
+            case 6:
                 console.log(colors.fg.yellow,"\nAPAGAR UMA CONTA", colors.reset)
                 deletarContaPorNumero()
                 keyPress()
                 break
-            case 6:
-                console.log("Saque")
+            case 7:
+                console.log(colors.fg.yellow,"SAQUE", colors.reset)
                 sacar()
                 keyPress()
                 break
-            case 7:
-                console.log("Deposito")
+            case 8:
+                console.log(colors.fg.yellow,"DEPOSITO", colors.reset)
                 depositar()
                 keyPress()
                 break
-            case 8:
-                console.log("Transferencia entre contas")
+            case 9:
+                console.log(colors.fg.yellow,"TRANSFERENCIA ENTRE CONTAS", colors.reset)
                 transferir()
                 keyPress()
                 break
-            case 9:
-                console.log(colors.fg.yellow,"\nBUSCAR CONTA POR NOME DO TITULAR", colors.reset)
-                procurarPorTitular()
-                keyPress()
+            // case 9:
+            //     console.log(colors.fg.yellow,"\nBUSCAR CONTA POR NOME DO TITULAR", colors.reset)
+            //     procurarPorTitular()
+            //     keyPress()
             default:
                 console.log("Opção inválida")
         }
@@ -137,7 +142,14 @@ function buscarContaPorNumero(): void {
     contas.procurarPorNumero(numero)
 }
 
-//opcao 4 - atualizar dados da conta
+// opcao 4 - procurar uma conta pelo nome do titular
+function procurarPorTitular() {
+    console.log("Digite o nome do titular: ")
+    const titular = Input.question("")
+    contas.procurarPorTitular(titular); 
+}
+
+//opcao 5 - atualizar dados da conta
 function atualizarConta(): void{
     console.log("Digite o número da conta: ")
     const numero = Input.questionInt("")
@@ -212,14 +224,14 @@ function atualizarConta(): void{
     }
 }
 
-//opcao 5 - deletar uma conta
+//opcao 6 - deletar uma conta
 function deletarContaPorNumero(): void{
     console.log("Digite o número da conta: ")
     const numero = Input.questionInt("")
     contas.deletar(numero)
 }
 
-//opcao 6 - sacar
+//opcao 7 - sacar
 function sacar(): void{
     console.log("Digite o número da conta: ")
     const numero = Input.questionInt("")
@@ -236,7 +248,7 @@ function sacar(): void{
     }
 }
 
-//opcao 7 - depositar
+//opcao 8 - depositar
 function depositar(): void{
     console.log("Digite o número da conta: ")
     const numero = Input.questionInt("")
@@ -252,7 +264,7 @@ function depositar(): void{
     }
 }
 
-//opcao 8 - transferir
+//opcao 9 - transferir
 function transferir(): void{
     console.log("Digite o número da conta de origem: ")
     const numeroOrigem = Input.questionInt("")
@@ -274,12 +286,6 @@ function transferir(): void{
     }
 }
 
-//opcao 9 - procurar por nome de titular
-function procurarPorTitular() {
-    console.log("Digite o nnome do titular: ")
-    const titular = Input.question("")
-    contas.procurarPorTitular(titular); 
-}
 
 
 //funcao para exibir os dados do dev
