@@ -41,12 +41,12 @@ conta_bancaria/
 | `[1]` Criar Conta | Cria uma nova Conta Corrente ou Conta Poupança |
 | `[2]` Listar Todas as Contas | Exibe todas as contas cadastradas |
 | `[3]` Buscar Conta por Número | Localiza uma conta pelo número |
-| `[4]` Atualizar Dados da Conta | Atualiza agência, titular, saldo e atributos específicos |
-| `[5]` Apagar uma Conta | Remove uma conta pelo número |
-| `[6]` Sacar | Realiza saque em uma conta |
-| `[7]` Depositar | Realiza depósito em uma conta |
-| `[8]` Transferir | Transfere saldo entre duas contas |
-| `[9]` Buscar por Titular | Localiza contas pelo nome do titular |
+| `[4]` Buscar por Titular | Localiza contas pelo nome do titular |
+| `[5]` Atualizar Dados da Conta | Atualiza agência, titular, saldo e atributos específicos |
+| `[6]` Apagar uma Conta | Remove uma conta pelo número |
+| `[7]` Sacar | Realiza saque em uma conta |
+| `[8]` Depositar | Realiza depósito em uma conta |
+| `[9]` Transferir | Transfere saldo entre duas contas |
 | `[0]` Sair | Encerra o sistema |
 
 ---
