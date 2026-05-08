@@ -49,6 +49,7 @@ conta_bancaria/
 | `[9]` Transferir | Transfere saldo entre duas contas |
 | `[0]` Sair | Encerra o sistema |
 
+
 ---
 
 ## 🧱 Modelo de Classes
@@ -62,6 +63,9 @@ Conta (abstract)
 - **Conta** é a classe base com os atributos comuns: `numero`, `agencia`, `titular`, `tipo` e `saldo`.
 - **ContaController** implementa os métodos do repositório e gerencia o array de contas.
 - **ContaRepository** define a interface com os métodos obrigatórios do sistema.
+
+---
+<img width="660" height="500" alt="image" src="https://github.com/user-attachments/assets/dd7919a5-590a-40ff-a47b-2467e8ec5b22" />
 
 ---
 
